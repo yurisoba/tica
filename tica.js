@@ -16,7 +16,9 @@ function sfc32(a, b, c, d) {
 }
 
 let init_state = {
+    country_idx: null,
     country: "",
+    qs: [],
 };
 let i_country;
 let qr;
@@ -28,6 +30,7 @@ function country_dialog()
     dlg.classList.add("with-title");
     const title = document.createElement("h3");
     title.innerText = "Where are you from?";
+    title.classList.add("title");
     dlg.appendChild(title);
 
     const select_container = document.createElement("div");
@@ -62,6 +65,7 @@ function question_dialog(q, title, name)
     dlg.classList.add("with-title");
     const t = document.createElement("h3");
     t.innerText = title;
+    t.classList.add("title");
     dlg.appendChild(t);
 
     const qt = document.createElement("h4");
@@ -83,6 +87,7 @@ function question_dialog(q, title, name)
         dlg.appendChild(lbl);
         const br = document.createElement("br");
         dlg.appendChild(br);
+        idx++;
     }
 
     document.body.appendChild(dlg);
@@ -90,8 +95,9 @@ function question_dialog(q, title, name)
 
 function qrcode_dialog()
 {
-    const dlg = document.createElement("div");
-    dlg.classList.add("qr");
+    const dlg = document.createElement("section");
+    // dlg.classList.add("qr");
+    dlg.classList.add("nes-container");
     qr = new QRCode(dlg, {
         text: "STRING",
         correctLevel: QRCode.CorrectLevel.M,
@@ -101,7 +107,11 @@ function qrcode_dialog()
     setInterval(() => {
         let s = "";
         s += `${i_country.value};`;
-        s += `c=1;q=1;a=${get_radio("q1")};`;
+        s += `c=${init_state.country_idx};`;
+        for (let i = 0; i < 3; i++) {
+            const n = `q${i}`;
+            s += `q=${init_state.qs[i]};a=${get_radio(n)};`;
+        }
 
         qr.makeCode(s);
     }, 1000);
@@ -110,14 +120,18 @@ function qrcode_dialog()
 function index()
 {
     document.body.innerText = "";
-    question_dialog(questions[init_state.country][0], "Q1", "q1");
+    let qc = 0;
+    for (const qidx of init_state.qs) {
+        question_dialog(questions[init_state.country][qidx], `Q${qc+1}`, `q${qc}`);
+        qc++;
+    }
     country_dialog();
     qrcode_dialog();
 }
 
 function intro()
 {
-    const rand = sfc32(0x9E3779B9, 0x243F6A88, 0xB7E15162, 1337);
+    const rand = sfc32(0x9E3779B9, 0x243F6A88, 0xB7E15162, Date.now());
     for (let i = 0; i < 15; i++) rand();
 
     const start = document.createElement("button");
@@ -132,9 +146,22 @@ function intro()
         for (let i = 0; i < 10; i++) {
             const idx = rerp(rand, qcountries);
             span.innerText = qcountries[idx];
+            init_state.country_idx = idx;
             await delay(500);
         }
         init_state.country = span.innerText;
+
+        // draw 3 questions
+        const qarray = [], qs = [];
+        for (let i = 0; i < questions[init_state.country].length; i++) {
+            qarray.push(i);
+        }
+        for (let i = 0; i < 3; i++) {
+            const idx = rerp(rand, qarray);
+            qs.push(qarray[idx]);
+            qarray.splice(idx, 1);
+        }
+        init_state.qs = qs;
 
         document.body.innerText = "";
 

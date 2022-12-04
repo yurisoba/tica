@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+body {
+    padding: 20px;
+}
+.nes-container {
+    margin-top: 20px;
+}
+.correct {
+    color: green;
+}
+.wrong {
+    color: red;
+}
+</style>
+</head>
+
+<body>
+    <section class="nes-container">
+        <video width="100%" id="qcam"></video>
+    </section>
+</body>
+<script src="qr-scanner.umd.min.js"></script>
+<script src="questions.js"></script>
+<script src="answers.js"></script>
+<script>
+const scanner = new QrScanner(
+    document.getElementById("qcam"),
+    callback,
+    {
+        highlightScanRegion: true,
+        returnDetailedScanResult: true
+    }
+);
+
+function callback(result) {
+    scanner.stop();
+    let pr = parse(result.data);
+
+    document.body.innerText = "";
+    
+    const dialog = document.createElement("section");
+    dialog.classList.add("nes-container");
+    dialog.classList.add("with-title");
+    const title = document.createElement("h3");
+    title.classList.add("title");
+    title.innerText = "RESULT";
+    dialog.appendChild(title);
+
+    const p = document.createElement("p");
+    p.innerText = `Player: ${pr.player}`;
+    dialog.appendChild(p);
+    const p2 = document.createElement("p");
+    p2.innerText = `Answering: ${pr.country}`;
+    dialog.appendChild(p2);
+    document.body.appendChild(dialog);
+
+    let idx = 0;
+    for (const attempt of pr.attempts) {
+        const c = document.createElement("section");
+        c.classList.add("nes-container");
+        c.classList.add("with-title");
+        const t = document.createElement("h3");
+        t.classList.add("title");
+        t.innerText = `Q${idx + 1}`;
+        c.appendChild(t);
+        const q = document.createElement("p");
+        q.innerText = attempt.q;
+        c.appendChild(q);
+        const a = document.createElement("p");
+        a.innerText = attempt.a;
+        a.classList.add((attempt.correct)?"correct":"wrong");
+        c.appendChild(a);
+        document.body.appendChild(c);
+        idx++;
+    }
+}
+
+function parse(txt) {
+    parts = txt.split(";");
+    const result = {
+        player: parts[0]
+    };
+    let attempts = [];
+    let country, question, answer;
+    for (const part of parts.slice(1)) {
+        let [t, v] = part.split("=");
+        v = Number(v);
+        switch (t) {
+        case "c":
+            country = qcountries[v];
+            break;
+        case "q":
+            // ensure country
+            question = questions[country][v];
+            answer = answers[country][v];
+            break;
+        case "a":
+            // ensure country and question
+            attempts.push({
+                q: question.q,
+                a: question.a[v],
+                correct: v === answer
+            });
+            question = null;
+            answer = null;
+            break;
+        }
+    }
+    result.attempts = attempts;
+    result.country = country;
+    return result;
+}
+
+scanner.start();
+
+</script>
+</html>
