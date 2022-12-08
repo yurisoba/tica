@@ -1,6 +1,98 @@
-const qcountries = ["Vietnam", "Guatemala", "Honduras", "Malaysia", "Belize", "India", "Thailand", "Indonesia", "Philippines"];
+const qcountries = ["Tuvalu", "Vietnam", "Guatemala", "Honduras", "Malaysia", "Belize", "India", "Thailand", "Indonesia", "Philippines"];
 
 const questions = {
+  "Tuvalu": [
+    {
+      "q": "In which continent is Tuvalu ?",
+      "a": [
+        "America",
+        "Asia",
+        "Africa",
+        "Oceania"
+      ]
+    },
+    {
+      "q": "What is the capital of Tuvalu?",
+      "a": [
+        "Funafuti",
+        "Nanumea",
+        "Suva",
+        "Auckland"
+      ]
+    },
+    {
+      "q": "How many islands of Tuvalu?",
+      "a": [
+        "200",
+        "8",
+        "2",
+        "600"
+      ]
+    },
+    {
+      "q": "What is the currency used in Tuvalu?",
+      "a": [
+        "USD",
+        "AUD",
+        "NTD",
+        "FJD"
+      ]
+    },
+    {
+      "q": "Who colonized Tuvalu in the 18th century?",
+      "a": [
+        "The Spanish Kingdom",
+        "The British Empire",
+        "The Japanese Empire",
+        "The Han Dynasty"
+      ]
+    },
+    {
+      "q": "When did Tuvalu get Independence?",
+      "a": [
+        "1978",
+        "1878",
+        "1678",
+        "1778"
+      ]
+    },
+    {
+      "q": "What is the official Langauge in Tuvalu?",
+      "a": [
+        "Tuvalu",
+        "English",
+        "Spanish",
+        "Tuvalu and English"
+      ]
+    },
+    {
+      "q": "Tuvalu was formely known as?",
+      "a": [
+        "The kingdom of Atlantis",
+        "The Ellice Island",
+        "Wakanda",
+        "The Unknown Island"
+      ]
+    },
+    {
+      "q": "What is the population of Tuvalu?",
+      "a": [
+        "10000 (+)",
+        "20000 (+)",
+        "60000000 (+)",
+        "500000 (+)"
+      ]
+    },
+    {
+      "q": "What is the name of the only international aiport in Tuvalu?",
+      "a": [
+        "Funafuti International Airport",
+        "Sir Toaripi Lauti International Airport",
+        "Maui International Airport",
+        "Talofa International Airport"
+      ]
+    }
+  ],
   "Vietnam": [
     {
       "q": "What is Vietnam famous for?",
