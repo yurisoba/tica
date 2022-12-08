@@ -122,7 +122,7 @@ const questions = {
       ]
     },
     {
-      "q": "Which place in Guatemala the first mixed UNESCO World Heritage Site for its cultural and natural wonder?",
+      "q": "Which place in Guatemala is the first mixed UNESCO World Heritage Site for its cultural and natural wonder?",
       "a": [
         "Semuc Champey",
         "Celaque National Park",
