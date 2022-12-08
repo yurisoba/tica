@@ -5,7 +5,7 @@ land of eternal autumn
 land of burning earth
 1
 
-Which of the following volcano in Guatemala is not active?
+Which of the following volcanos in Guatemala is not active?
 Fuego
 Cerro de Oro
 Pacaya
@@ -19,7 +19,7 @@ land of eternal spring
 land of eternal summer
 3
 
-Which place in Guatemala is the first mixed UNESCO World Heritage Site for its cultural and natural wonder?
+Which place in Guatemala is the first mixed UNESCO World Heritage Site for it's cultural and natural wonder?
 Semuc Champey
 Celaque National Park
 Lake Atitlán
@@ -47,7 +47,7 @@ Guatemala’s Lake Atitlan is the deepest lake in Central America with a depth o
 420 meters
 3
 
-Aproximetely how many times per hour does Guatemala’s Fuego volcano erupts?
+Approximately how many times per hour does Guatemala’s Fuego volcano erupt?
 1-2
 5-9
 10-15
