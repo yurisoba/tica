@@ -151,12 +151,12 @@ function intro()
         }
         init_state.country = span.innerText;
 
-        // draw 3 questions
         const qarray = [], qs = [];
         for (let i = 0; i < questions[init_state.country].length; i++) {
             qarray.push(i);
         }
-        for (let i = 0; i < init_state.qs.length; i++) {
+        // draw 3 questions
+        for (let i = 0; i < 3; i++) {
             const idx = rerp(rand, qarray);
             qs.push(qarray[idx]);
             qarray.splice(idx, 1);
