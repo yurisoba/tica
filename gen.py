@@ -5,26 +5,26 @@ files = os.listdir("raw")
 countries = []
 questions = {}
 answers = {}
+nq = 0
 
 for fn in files:
     country = fn.split(".")[0]
-    print("Found", country)
     countries.append(country)
 
     cq = []
     ca = []
     with open(os.path.join("raw", fn)) as f:
-        for question in f:
-            choices = []
-            for i in range(4):
-                choices.append(next(f).strip())
-            answer = int(next(f)) - 1
+        qs = f.read().strip().split("\n\n")
+        nq += len(qs)
+        print("Found", country + ":", len(qs), "questions")
+        for q in qs:
+            lines = q.strip().split("\n")
             cq.append({
-                "q": question.strip(),
-                "a": choices,
+                "q": lines[0].strip(),
+                "a": [line.strip() for line in lines[1:-1]],
             })
-            ca.append(answer)
-            next(f)
+            ca.append(int(lines[-1].strip()) - 1)
+
     questions[country] = cq
     answers[country] = ca
 
@@ -36,4 +36,4 @@ with open("questions.js", "w") as f:
 with open("answers.js", "w") as f:
     f.write(f"const answers = {json.dumps(answers, indent = 2)};\n")
 
-print("OK")
+print("OK", nq, "questions found.")

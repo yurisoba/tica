@@ -108,7 +108,7 @@ function qrcode_dialog()
         let s = "";
         s += `${i_country.value};`;
         s += `c=${init_state.country_idx};`;
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < init_state.qs.length; i++) {
             const n = `q${i}`;
             s += `q=${init_state.qs[i]};a=${get_radio(n)};`;
         }
@@ -156,7 +156,7 @@ function intro()
         for (let i = 0; i < questions[init_state.country].length; i++) {
             qarray.push(i);
         }
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < init_state.qs.length; i++) {
             const idx = rerp(rand, qarray);
             qs.push(qarray[idx]);
             qarray.splice(idx, 1);
