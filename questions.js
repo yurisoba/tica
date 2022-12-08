@@ -315,9 +315,8 @@ const questions = {
       ]
     },
     {
-      "q": "Due to political reasons among ethnic groups in Malaysia, the following country has been a significant destination for",
+      "q": "Due to political reasons among ethnic groups in Malaysia, the following country has been a significant destination for higher education:",
       "a": [
-        "higher education:",
         "Taiwan",
         "Thailand",
         "Philippines",
@@ -358,6 +357,13 @@ const questions = {
     },
     {
       "q": "The only official language in Malaysia is Bahasa Malaysia",
+      "a": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "q": "Homebrewing is not legal in Malaysia",
       "a": [
         "True",
         "False"

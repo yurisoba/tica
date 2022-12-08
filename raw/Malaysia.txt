@@ -26,8 +26,7 @@ Putrajaya
 Kota Kinabalu
 3
 
-Due to political reasons among ethnic groups in Malaysia, the following country has been a significant destination for
-higher education:
+Due to political reasons among ethnic groups in Malaysia, the following country has been a significant destination for higher education:
 Taiwan
 Thailand
 Philippines
@@ -59,6 +58,11 @@ False
 2
 
 The only official language in Malaysia is Bahasa Malaysia
+True
+False
+1
+
+Homebrewing is not legal in Malaysia
 True
 False
 1
