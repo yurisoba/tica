@@ -1,4 +1,5 @@
 const countries = [
+"Taiwan",
 "Afghanistan",
 "Albania",
 "Algeria",
